@@ -1,0 +1,32 @@
+{
+  "name": "wordpress-release-action",
+  "version": "1.0.0",
+  "description": "This action builds WF WordPress projects, uploads the zipped artifacts to an AWS S3 Bucket and triggers the app deployment on the desired AWS OpsWorks Stack.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint index.js",
+    "package": "ncc build index.js -o dist",
+    "test": "eslint index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wunderfarm/wordpress-release-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wunderfarm/wordpress-release-action/issues"
+  },
+  "homepage": "https://github.com/wunderfarm/wordpress-release-action#readme",
+  "dependencies": {
+    "@actions/artifact": "^0.2.0",
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0",
+    "aws-sdk": "^2.672.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.20.5",
+    "eslint": "^6.3.0"
+  }
+}
