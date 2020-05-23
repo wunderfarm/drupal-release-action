@@ -51,6 +51,8 @@ try {
     let file = fs.readFileSync(filename)
     let s3params = {
         Bucket: awsS3Bucket,
+        Tagging: 'bill='+wfWebname+'&client='+wfWebname+'',
+        Key: awsOpsworksStackId + '/' + wfWebname + '_' + awsOpsworksAppId + '/' + filename,
         Key: wfWebname + '/' + filename,
         Body: file
     }
