@@ -23,6 +23,9 @@ inputs:
   database-password:
     description: 'The database password'
     required: true
+  wf-hashsalt:
+    description: 'The hashsalt'
+    required: true
   deployment-environment:
     description: 'The deployment environment (e.g. staging)'
     default: 'production'

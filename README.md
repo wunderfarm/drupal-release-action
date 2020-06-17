@@ -67,6 +67,7 @@ with:
   database-name: 'example2020_production'
   database-user: ${{ secrets.APP_DB_USER }}
   database-password: ${{ secrets.APP_DB_PASSWORD }}
+  wf-hashsalt: ${{ secrets.WF_HASHSALT }}
   deployment-environment: 'staging'
   deployment-domains: 'www.example.com,test.example.com'
   wf-auth-user: ${{ secrets.WF_AUTHUSER }}

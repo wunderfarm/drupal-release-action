@@ -14,6 +14,7 @@ const databaseSlavehost = core.getInput('database-slavehost')
 const databaseName = core.getInput('database-name')
 const databaseUser = core.getInput('database-user')
 const databasePassword = core.getInput('database-password')
+const wfHashsalt = core.getInput('wf-hashsalt')
 const wfAuthUser = core.getInput('wf-auth-user')
 const wfAuthPassword = core.getInput('wf-auth-password')
 const awsS3Bucket = core.getInput('aws-s3-bucket')
@@ -138,6 +139,11 @@ async function runAction() {
             {
                 Key: 'DB_PASSWORD',
                 Value: databasePassword,
+                Secure: true
+            },
+            {
+                Key: 'WF_HASHSALT',
+                Value: wfHashsalt,
                 Secure: true
             }
         ]
