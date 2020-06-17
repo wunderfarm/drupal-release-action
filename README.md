@@ -5,37 +5,77 @@ This action builds WF Drupal projects, uploads the zipped artifacts to an AWS S3
 ## Inputs
 
 ### `wf-webname`
-**Required** The unique name of the web. Default `"example2020"`.  
+**Required** The unique name of the web. Default `"example2020"`.
+
+### `wf-client`
+**Required** The unique name of the client. (e.g. `"example2020"`)`.
 
 ### `aws-s3-bucket`
-**Required** The AWS S3 Bucket Name.  
+**Required** The AWS S3 Bucket Name.
+
+### `database-host`
+**Required** The database host to use.
+
+### `database-slavehost`
+The database slavehost to use.
+
+### `database-name`
+**Required** The database name to use (e.g. example2020_production).
+
+### `database-user`
+**Required** The database user to use (e.g. example).
+
+### `database-password`
+**Required** The database password to use.
+
+### `deployment-environment`
+The deployment environment to use (e.g. staging). Default `"production"`.
+
+### `deployment-domains`:
+**Required** The deployment domain to use (e.g. `"www.example.com,test.example.com"`)
+
+### `wf-auth-user`
+Optional HTTP auth user
+
+### `wf-auth-password`
+Optional HTTP auth password
 
 ### `aws-access-key-id`
-**Required** The AWS S3 Access Key ID.  
+**Required** The AWS S3 Access Key ID.
 
 ### `aws-secret-access-key`
-**Required** The AWS S3 Secred Access Key.  
+**Required** The AWS S3 Secred Access Key.
 
 ### `aws-region`
-The AWS S3 Region. Default `"eu-west-1"`  
+The AWS S3 Region. Default `"eu-west-1"`
 
 ### `aws-opsworks-stack-id`
-The AWS Opsworks Stack ID.  
+**Required** The AWS Opsworks Stack ID.
 
-### `aws-opsworks-app-id`
-The AWS Opsworks App ID.  
+### `aws-rds-arn`
+**Required** The AWS RDS instance ARN. 
 
 ## Example usage
 ```yaml
-uses: wunderfarm/drupal-release-action@v1
+uses: wunderfarm/drupal-release-action@v2
 with:
   wf-webname: 'example2020'
+  wf-client: 'example2020'
   aws-s3-bucket: ${{ secrets.AWS_S3_BUCKET }}
+  database-host: ${{ secrets.APP_DB_HOST }}
+  database-slavehost: ${{ secrets.APP_DB_SLAVEHOST }}
+  database-name: 'example2020_production'
+  database-user: ${{ secrets.APP_DB_USER }}
+  database-password: ${{ secrets.APP_DB_PASSWORD }}
+  deployment-environment: 'staging'
+  deployment-domains: 'www.example.com,test.example.com'
+  wf-auth-user: ${{ secrets.WF_AUTHUSER }}
+  wf-auth-password: ${{ secrets.WF_AUTHPASSWORD }}
   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   aws-region: 'eu-west-1'
   aws-opsworks-stack-id: ${{ secrets.AWS_STACK_ID }}
-  aws-opsworks-app-id: ${{ secrets.AWS_APP_ID }}
+  aws-rds-arn: ${{ secrets.AWS_RDS_ARN }}
 ```
 
 ## Package for distribution
