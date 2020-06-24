@@ -15,6 +15,7 @@ const databaseName = core.getInput('database-name')
 const databaseUser = core.getInput('database-user')
 const databasePassword = core.getInput('database-password')
 const wfHashsalt = core.getInput('wf-hashsalt')
+const cronKey = core.getInput('cron-key')
 const wfAuthUser = core.getInput('wf-auth-user')
 const wfAuthPassword = core.getInput('wf-auth-password')
 const awsS3Bucket = core.getInput('aws-s3-bucket')
@@ -147,6 +148,14 @@ async function runAction() {
                 Secure: true
             }
         ]
+
+        if (cronKey) {
+            appEnvironmentVars.push({
+                Key: 'CRON_KEY',
+                Value: cronKey,
+                Secure: true
+            })
+        }
 
         if (databaseSlavehost) {
             appEnvironmentVars.push({

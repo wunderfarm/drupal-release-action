@@ -26,6 +26,9 @@ inputs:
   wf-hashsalt:
     description: 'The hashsalt'
     required: true
+  cron-key:
+    description: 'The cron key'
+    required: false
   deployment-environment:
     description: 'The deployment environment (e.g. staging)'
     default: 'production'

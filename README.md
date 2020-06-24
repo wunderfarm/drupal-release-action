@@ -28,6 +28,12 @@ The database slavehost to use.
 ### `database-password`
 **Required** The database password to use.
 
+### `wf-hashsalt`
+**Required** The hashsalt to use.
+
+### `cron-key`
+**Required** The cron key to use.
+
 ### `deployment-environment`
 The deployment environment to use (e.g. staging). Default `"production"`.
 
@@ -68,6 +74,7 @@ with:
   database-user: ${{ secrets.APP_DB_USER }}
   database-password: ${{ secrets.APP_DB_PASSWORD }}
   wf-hashsalt: ${{ secrets.WF_HASHSALT }}
+  cron-key: ${{ secrets.CRON_KEY }}
   deployment-environment: 'staging'
   deployment-domains: 'www.example.com,test.example.com'
   wf-auth-user: ${{ secrets.WF_AUTHUSER }}
