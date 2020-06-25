@@ -16,6 +16,8 @@ const databaseUser = core.getInput('database-user')
 const databasePassword = core.getInput('database-password')
 const wfHashsalt = core.getInput('wf-hashsalt')
 const cronKey = core.getInput('cron-key')
+const phpTimeout = core.getInput('php-timeout')
+const forceHttps = core.getInput('force-https')
 const wfAuthUser = core.getInput('wf-auth-user')
 const wfAuthPassword = core.getInput('wf-auth-password')
 const awsS3Bucket = core.getInput('aws-s3-bucket')
@@ -153,6 +155,22 @@ async function runAction() {
             appEnvironmentVars.push({
                 Key: 'CRON_KEY',
                 Value: cronKey,
+                Secure: true
+            })
+        }
+
+        if (phpTimeout) {
+            appEnvironmentVars.push({
+                Key: 'php_timeout',
+                Value: phpTimeout,
+                Secure: true
+            })
+        }
+
+        if (forceHttps) {
+            appEnvironmentVars.push({
+                Key: 'force_https',
+                Value: forceHttps,
                 Secure: true
             })
         }

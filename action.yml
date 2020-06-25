@@ -29,6 +29,12 @@ inputs:
   cron-key:
     description: 'The cron key'
     required: false
+  php-timeout:
+    description: 'Optional PHP Timeout value'
+    required: false
+  force-https:
+    description: 'Force HTTPS usage'
+    required: false
   deployment-environment:
     description: 'The deployment environment (e.g. staging)'
     default: 'production'

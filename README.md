@@ -34,6 +34,12 @@ The database slavehost to use.
 ### `cron-key`
 **Required** The cron key to use.
 
+### `php-timeout`
+Optional PHP timeout value
+
+### `force-https`
+Optional force usage of https. Default `false`
+
 ### `deployment-environment`
 The deployment environment to use (e.g. staging). Default `"production"`.
 
@@ -75,6 +81,8 @@ with:
   database-password: ${{ secrets.APP_DB_PASSWORD }}
   wf-hashsalt: ${{ secrets.WF_HASHSALT }}
   cron-key: ${{ secrets.CRON_KEY }}
+  php-timeout: ${{ secrets.PHP_TIMEOUT }}
+  force-https: ${{ secrets.FORCE_HTTPS }}
   deployment-environment: 'staging'
   deployment-domains: 'www.example.com,test.example.com'
   wf-auth-user: ${{ secrets.WF_AUTHUSER }}
