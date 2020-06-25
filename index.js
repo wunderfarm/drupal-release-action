@@ -163,7 +163,7 @@ async function runAction() {
             appEnvironmentVars.push({
                 Key: 'php_timeout',
                 Value: phpTimeout,
-                Secure: true
+                Secure: false
             })
         }
 
@@ -171,7 +171,7 @@ async function runAction() {
             appEnvironmentVars.push({
                 Key: 'force_https',
                 Value: forceHttps,
-                Secure: true
+                Secure: false
             })
         }
 
