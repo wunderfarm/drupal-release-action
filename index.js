@@ -211,11 +211,12 @@ async function runAction() {
                 StackId: awsOpsworksStackId,
                 RdsDbInstanceArns: [awsRdsDbArn],
             }, function (err, data) {
-                if (err && err.code !== 'ValidationException') {
-                    throw err
+                if (err) {
+                    if(err.code !== 'ValidationException')
+                        throw err
                 } else {
                     appDataSources = [{
-                        Arn: data.RdsDbInstanceArn,
+                        Arn: awsRdsDbArn,
                         DatabaseName: databaseName,
                         Type: 'RdsDbInstance'
                     }]
