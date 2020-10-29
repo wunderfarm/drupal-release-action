@@ -156,10 +156,6 @@ async function runAction() {
             }
         ]
 
-        let appDataSources = [{
-            Type: 'none'
-        }]
-
         if (cronKey) {
             appEnvironmentVars.push({
                 Key: 'CRON_KEY',
@@ -205,14 +201,18 @@ async function runAction() {
             })
         }
 
+        let appDataSources = [{
+            Type: 'None'
+        }]
+
         if (awsRdsDbArn) {
 
             opsworks.describeRdsDbInstances({
                 StackId: awsOpsworksStackId,
                 RdsDbInstanceArns: [awsRdsDbArn],
             }, function (err, data) {
-                if (err) {
-                    console.log(err, err.stack);
+                if (err && err.code !== 'ValidationException') {
+                    throw err
                 } else {
                     appDataSources = [{
                         Arn: data.RdsDbInstanceArn,
