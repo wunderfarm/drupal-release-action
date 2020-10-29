@@ -135,6 +135,11 @@ async function runAction() {
                 Secure: false
             },
             {
+                Key: 'DB_NAME',
+                Value: databaseName,
+                Secure: false
+            },
+            {
                 Key: 'DB_USER',
                 Value: databaseUser,
                 Secure: false
@@ -150,6 +155,10 @@ async function runAction() {
                 Secure: true
             }
         ]
+
+        let appDataSources = [{
+            Type: 'none'
+        }]
 
         if (cronKey) {
             appEnvironmentVars.push({
@@ -196,6 +205,25 @@ async function runAction() {
             })
         }
 
+        if (awsRdsDbArn) {
+
+            opsworks.describeRdsDbInstances({
+                StackId: awsOpsworksStackId,
+                RdsDbInstanceArns: [awsRdsDbArn],
+            }, function (err, data) {
+                if (err) {
+                    console.log(err, err.stack);
+                } else {
+                    appDataSources = [{
+                        Arn: data.RdsDbInstanceArn,
+                        DatabaseName: databaseName,
+                        Type: 'RdsDbInstance'
+                    }]
+                }
+            })
+
+        }
+
         app = await getAwsOpsworksApp()
 
         if (typeof (app) !== 'undefined') {
@@ -209,11 +237,7 @@ async function runAction() {
                 AppSource: {
                     Type: ' other'
                 },
-                DataSources: [{
-                    Arn: awsRdsDbArn,
-                    DatabaseName: databaseName,
-                    Type: 'RdsDbInstance'
-                }],
+                DataSources: appDataSources,
                 Environment: appEnvironmentVars,
                 Domains: appDomains
             }
@@ -237,11 +261,7 @@ async function runAction() {
                 AppSource: {
                     Type: ' other'
                 },
-                DataSources: [{
-                    Arn: awsRdsDbArn,
-                    DatabaseName: databaseName,
-                    Type: 'RdsDbInstance'
-                }],
+                DataSources: appDataSources,
                 Environment: appEnvironmentVars,
                 Domains: appDomains
             }
