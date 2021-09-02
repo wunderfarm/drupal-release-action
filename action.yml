@@ -32,6 +32,9 @@ inputs:
   php-timeout:
     description: 'Optional PHP Timeout value'
     required: false
+  php-version:
+    description: 'Optional PHP Version value (e.g. 7.4 or 8.0)'
+    required: false
   force-https:
     description: 'Force HTTPS usage'
     required: false

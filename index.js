@@ -17,6 +17,7 @@ const databasePassword = core.getInput('database-password')
 const wfHashsalt = core.getInput('wf-hashsalt')
 const cronKey = core.getInput('cron-key')
 const phpTimeout = core.getInput('php-timeout')
+const phpVersion = core.getInput('php-version')
 const forceHttps = core.getInput('force-https')
 const wfAuthUser = core.getInput('wf-auth-user')
 const wfAuthPassword = core.getInput('wf-auth-password')
@@ -168,6 +169,14 @@ async function runAction() {
             appEnvironmentVars.push({
                 Key: 'php_timeout',
                 Value: phpTimeout,
+                Secure: false
+            })
+        }
+        
+        if (phpVersion) {
+            appEnvironmentVars.push({
+                Key: 'php_version',
+                Value: phpVersion,
                 Secure: false
             })
         }

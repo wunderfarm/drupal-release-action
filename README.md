@@ -82,6 +82,7 @@ with:
   wf-hashsalt: ${{ secrets.WF_HASHSALT }}
   cron-key: ${{ secrets.CRON_KEY }}
   php-timeout: ${{ secrets.PHP_TIMEOUT }}
+  php-version: ${{ secrets.PHP_VERSION }}
   force-https: ${{ secrets.FORCE_HTTPS }}
   deployment-environment: 'staging'
   deployment-domains: 'www.example.com,test.example.com'
