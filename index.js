@@ -70,8 +70,6 @@ function deployApp(awsOpsworksAppId) {
         execSync(`mkdir dist`).toString()
         execSync(`cp -R vendor dist`).toString()
         execSync(`cp -R *.php dist`).toString()
-        execSync(`cp -R robots.txt dist`).toString()
-        execSync(`cp -R ads.txt dist`).toString()
         execSync(`cp -R includes dist`).toString()
         execSync(`cp -R misc dist`).toString()
         execSync(`cp -R modules dist`).toString()
@@ -79,7 +77,9 @@ function deployApp(awsOpsworksAppId) {
         execSync(`cp -R scripts dist`).toString()
         execSync(`cp -R sites dist`).toString()
         execSync(`cp -R themes dist`).toString()
-        execSync(`cp -R web.config dist`).toString()
+        execSync(`[[ -e robots.txt ]] && cp -R robots.txt dist`).toString()
+        execSync(`[[ -e ads.txt ]] && cp -R ads.txt dist`).toString()
+        execSync(`[[ -e web.config ]] && cp -R web.config dist`).toString()
         execSync(`zip -rq ${wfWebname} ./dist`).toString()
 
         let filename = wfWebname + '.zip'
