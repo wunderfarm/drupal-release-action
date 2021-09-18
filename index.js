@@ -68,7 +68,7 @@ function deployApp(awsOpsworksAppId) {
         console.log(execSync('composer validate').toString())
         console.log(execSync('composer install --prefer-dist --no-progress --no-suggest').toString())
         execSync(`mkdir dist`).toString()
-        execSync(`cp -R vendor dist`).toString()
+        execSync(`cp -R vendor dist 2>/dev/null || :`).toString()
         execSync(`cp -R *.php dist`).toString()
         execSync(`cp -R includes dist`).toString()
         execSync(`cp -R misc dist`).toString()
