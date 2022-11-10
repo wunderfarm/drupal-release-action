@@ -18,6 +18,8 @@ const wfHashsalt = core.getInput('wf-hashsalt')
 const cronKey = core.getInput('cron-key')
 const phpTimeout = core.getInput('php-timeout')
 const phpVersion = core.getInput('php-version')
+const memoryLimit = core.getInput('memory-limit')
+const uploadMaxFilesize = core.getInput('upload-max-filesize')
 const forceHttps = core.getInput('force-https')
 const wfAuthUser = core.getInput('wf-auth-user')
 const wfAuthPassword = core.getInput('wf-auth-password')
@@ -172,11 +174,27 @@ async function runAction() {
                 Secure: false
             })
         }
-        
+
         if (phpVersion) {
             appEnvironmentVars.push({
                 Key: 'php_version',
                 Value: phpVersion,
+                Secure: false
+            })
+        }
+
+        if (memoryLimit) {
+            appEnvironmentVars.push({
+                Key: 'memory_limit',
+                Value: memoryLimit,
+                Secure: false
+            })
+        }
+
+        if (uploadMaxFilesize) {
+            appEnvironmentVars.push({
+                Key: 'upload_max_filesize',
+                Value: uploadMaxFilesize,
                 Secure: false
             })
         }
